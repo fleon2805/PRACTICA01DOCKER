@@ -1,19 +1,18 @@
-# productos-crud-app/Dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copiar archivos de definición de dependencias
+# Copiar package.json y package-lock.json (si existe)
 COPY package*.json ./
 
-# Instalar dependencias
-RUN npm install
+# Instalar dependencias con bandera --legacy-peer-deps para evitar problemas
+RUN npm install --legacy-peer-deps
 
-# Copiar el resto de archivos de la aplicación
+# Copiar el resto de la aplicación
 COPY . .
 
-# Exponer el puerto usado por la aplicación
+# Exponer puerto
 EXPOSE 3000
 
-# Comando para iniciar la aplicación
-CMD ["npm", "start"]
+# Comando para iniciar
+CMD ["node", "app.js"]
