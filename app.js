@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Configurar base de datos SQLite
-const db = new sqlite3.Database('./productos.db', (err) => {
+const db = new sqlite3.Database('./data/productos.db', (err) => {
   if (err) {
     console.error('Error conectando a la base de datos', err.message);
   } else {
